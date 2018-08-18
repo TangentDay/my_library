@@ -122,7 +122,7 @@ struct SqrtDecomposition2{
     }
 
     // [l, r)
-    void update(int l, int r, ll x){
+    void add(int l, int r, ll x){
         REP(b,k){
             int p = sqrtn * b;
             int q = sqrtn * (b+1);

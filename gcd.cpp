@@ -3,6 +3,7 @@ int gcd(int a, int b){
     return gcd(b, a % b);
 }
 
+// a*x - b*y = 1
 int extgcd(int a, int b, int &x, int &y){
     int d = a;
     if (b != 0){

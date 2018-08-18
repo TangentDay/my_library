@@ -26,30 +26,36 @@ typedef vector<VL> VVL;
 typedef pair<int,int> P;
 typedef pair<ll,ll> PL;
 
-vector<array<int, 2> > trie_nodes = {{0,0}};
+const int INF = 1e9;
 
-void push_trie(int x){
-    int node = 0;
-    FORR(bit,30,0){
-        int b = !!(x & (1<<bit));
-        if (!trie_nodes[node][b]){
-            trie_nodes[node][b] = trie_nodes.size();
-            trie_nodes.push_back({0, 0});
+struct Trie_bit{
+    vector<array<int, 2> > trie_nodes = {{0,0}};
+    vector<int> mi;
+    void push_trie(int x){
+        int node = 0;
+        FORR(bit,17,0){
+            int b = !!(x & (1<<bit));
+            if (!trie_nodes[node][b]){
+                trie_nodes[node][b] = trie_nodes.size();
+                trie_nodes.push_back({0, 0});
+                mi.push_back(INF);
+            }
+            node = trie_nodes[node][b];
+            mi[node] = min(mi[node], x);
         }
-        node = trie_nodes[node][b];
     }
-}
 
-int maxmatch(int x){
-    int node = 0;
-    int r = 0;
-    FORR(bit,30,0){
-        int b = !!!(x & (1<<bit));
-        if (!trie_nodes[node][b]){
-            b ^= 1;
+    int maxmatch(int x, int ma){
+        int node = 0;
+        int r = 0;
+        FORR(bit,17,0){
+            int b = !!!(x & (1<<bit));
+            if (!trie_nodes[node][b] || mi[trie_nodes[node][b]] >= ma){
+                b ^= 1;
+            }
+            node = trie_nodes[node][b];
+            r |= (1 << bit) * b;
         }
-        node = trie_nodes[node][b];
-        r |= (1 << bit) * b;
+        return r;
     }
-    return r;
-}
+};
