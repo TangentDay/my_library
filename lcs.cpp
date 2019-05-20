@@ -25,11 +25,11 @@ typedef pair<int,int> P;
 typedef pair<ll,ll> PL;
  
 int lcs(string s, string t){
-	int n = s.length(), m = t.length();
-	VVI dp(n+1, VI(m+1));
-	FOR(i,1,n) FOR(j,1,m){
-		if (s[i-1] == t[j-1]) dp[i][j] = dp[i-1][j-1] + 1;
-		else dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
-	}
-	return dp[n][m];
+    int n = s.length(), m = t.length();
+    VVI dp(n+1, VI(m+1));
+    FOR(i,1,n) FOR(j,1,m){
+        if (s[i-1] == t[j-1]) dp[i][j] = dp[i-1][j-1] + 1;
+        else dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
+    }
+    return dp[n][m];
 }

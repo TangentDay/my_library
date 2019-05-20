@@ -110,6 +110,7 @@ void CentroidDecomposition(VVI &graph){
     function<void (int)> rec = [&](int start){
         int c = OneCentroid(start, graph, dead);
         dead[c] = true;
+        // do it
         for (int u : graph[c]){
             if (!dead[u]) rec(u);
         }

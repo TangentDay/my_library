@@ -30,7 +30,9 @@ VI compress_coordinate(VI x, VI &xc){
     REP(i,n) xc.push_back(x[i]);
     sort(ALL(xc));
     xc.erase(unique(ALL(xc)), xc.end());
-    REP(i,n) x[i] = find(ALL(xc), x[i]) - xc.begin();
+    map<int,int> mp;
+    REP(i,xc.size()) mp[xc[i]] = i;
+    REP(i,n) x[i] = mp[x[i]];
     return x;
 }
 

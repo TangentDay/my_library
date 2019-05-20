@@ -2,7 +2,6 @@
 #include <time.h>
 
 mt19937 mt((int)time(0));
-
 ll rand(ll x){
 	return mt() % x;
 }
