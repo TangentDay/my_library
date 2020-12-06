@@ -132,7 +132,7 @@ struct HLDecomposition{
     ll calc_v(int u, int v){
         if (vid[u] > vid[v]) swap(u, v);
         ll ret = bit.sum(max(vid[head[v]], vid[u]), vid[v]+1);
-        if (head[u] != head[v])  ret += calc_v(u, par[head[v]]);
+        if (head[u] != head[v]) ret += calc_v(u, par[head[v]]);
         return ret;
     }
 
@@ -140,7 +140,7 @@ struct HLDecomposition{
     ll calc_e(int u, int v){
         if (vid[u] > vid[v]) swap(u, v);
         ll ret = bit.sum(max(vid[head[v]], vid[u]+1), vid[v]+1);
-        if (head[u] != head[v])  ret += calc_e(u, par[head[v]]);
+        if (head[u] != head[v]) ret += calc_e(u, par[head[v]]);
         return ret;
     }
 

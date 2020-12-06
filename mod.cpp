@@ -51,6 +51,7 @@ ll powll(ll x, ll y){
 }
 
 ll divll(ll x, ll y){
+    x %= mod;
     return (x * powll(y,mod-2)) % mod;
 }
 
@@ -62,6 +63,17 @@ ll nPr(ll n, ll r){
 ll nCr(ll n, ll r){
     if (n < r || r < 0) return 0;
     return mul(mul(fact[n], invf[r]), invf[n-r]);
+}
+
+void init_f(){
+    fact[0] = 1;
+    FOR(i,1,N-1){
+        fact[i] = (fact[i-1] * i) % mod;
+    }
+    invf[N-1] = divll(1, fact[N-1]);
+    FORR(i,N-1,1){
+        invf[i-1] = (invf[i] * i) % mod;
+    }
 }
 
 VVL mulmat(VVL A, VVL B){
@@ -81,13 +93,4 @@ VVL powmat(VVL A, ll x){
         x >>= 1;
     }
     return B;
-}
-
-int main() {
-    fact[0] = invf[0] = 1;
-    FOR(i,1,N-1){
-        fact[i] = (fact[i-1] * i) % mod;
-        invf[i] = divll(invf[i-1], i);
-    }
-    return 0;
 }

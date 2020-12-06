@@ -28,7 +28,7 @@ typedef pair<ll,ll> PL;
 
 const int INF = 1e9;
 
-struct Trie_bit{
+struct binary_trie{
     vector<array<int, 2> > trie_nodes = {{0,0}};
     vector<int> mi;
     void push_trie(int x){

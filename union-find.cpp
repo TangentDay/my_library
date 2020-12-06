@@ -27,11 +27,12 @@ typedef pair<int,int> P;
 typedef pair<ll,ll> PL;
 
 struct union_find{
-    VI par;
+    VI par, sz;
 
     void init(int n){
         par.resize(n);
         REP(i,n) par[i] = i;
+        sz.assign(n, 1);
     }
 
     int find(int x){
@@ -48,6 +49,11 @@ struct union_find{
         y = find(y);
         if (x == y) return;
         par[x] = y;
+        sz[y] += sz[x];
+    }
+
+    int size(int x){
+        return sz[find(x)];
     }
 };
 
